@@ -9,18 +9,26 @@ const TODOS_N = "toDos";
 function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
-  //toDoList.removeChild(li);
+  toDoList.removeChild(li);
   const cleanToDos = toDos.filter(function(toDo) {
     return toDo.id !== li.id;
   });
+  console.log(cleanToDos);
   toDos = cleanToDos;
+
+  /*resetId();
+  toDos.forEach(value => paintToDo(value.text));
+  */
   saveToDo();
-  while (toDoList.hasChildNodes) {
-    toDoList.removeChild(toDoList.firstChild);
-  }
-  loadToDos();
-  console.log(toDoList.hasChildNodes());
 }
+
+/* function resetId() {
+  toDos.forEach((value, index) => {
+    value.id = index + 1;
+    console.log(value);
+  });
+}
+*/
 
 function saveToDo() {
   localStorage.setItem(TODOS_N, JSON.stringify(toDos));
